@@ -1,0 +1,8 @@
+[tool.hatch.metadata]
+name = "service-b"
+version = "0.1.0"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "flask"
+]

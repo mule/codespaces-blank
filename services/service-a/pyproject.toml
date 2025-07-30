@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "service-a"
+version = "0.1.0"
+dependencies = [
+    "grpcio",
+    "grpcio-tools"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/service_a"]
+
+[tool.hatch.envs.default]
+dependencies = [
+    "requests"
+]
+
+[tool.hatch.envs.default.scripts]
+grpc-generate = [
+  "python -m grpc_tools.protoc -I./src --python_out=./src/service_a --grpc_python_out=./src/service_a ./src/service_a.proto",
+  "sed -i 's/^import service_a_pb2 as/from . import service_a_pb2 as/' src/service_a/service_a_pb2_grpc.py"
+]
+

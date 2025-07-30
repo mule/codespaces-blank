@@ -1,0 +1,27 @@
+[tool.hatch.build.targets.wheel]
+packages = ["service_c"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "service-c"
+version = "0.1.0"
+dependencies = [
+    "nats-py",
+    "grpcio",
+    "grpcio-tools"
+]
+
+[tool.hatch.metadata]
+name = "service-c"
+version = "0.1.0"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "nats-py",
+    "grpcio",
+    "grpcio-tools"
+]

@@ -1,0 +1,11 @@
+
+[tool.hatch.build]
+exclude = [
+    "/services"
+]
+
+[tool.hatch.grpc]
+[[tool.hatch.grpc.targets]]
+proto = "services/service-a/app/service_a.proto"
+python_out = "services/service-a/app"
+grpc_python_out = "services/service-a/app"

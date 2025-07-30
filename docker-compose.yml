@@ -1,0 +1,36 @@
+
+version: '3.8'
+
+services:
+  nats:
+    image: nats:2.10-alpine
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    command: ["-js"]
+
+  service-a:
+    build:
+      context: ./services/service-a
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+      - PYTHONPATH=/app
+
+  service-b:
+    build:
+      context: ./services/service-b
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+
+  service-c:
+    build:
+      context: ./services/service-c
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+      - PYTHONPATH=/app

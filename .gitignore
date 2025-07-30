@@ -1,0 +1,14 @@
+# Hatch build artifacts
+*.egg-info
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
