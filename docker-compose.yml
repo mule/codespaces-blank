@@ -25,12 +25,24 @@ services:
       - nats
     environment:
       - NATS_URL=nats://nats:4222
+    restart: on-failure
+    # Use a proper healthcheck that checks if the /tmp/healthy file exists
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/healthy"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   service-c:
     build:
       context: ./services/service-c
     depends_on:
-      - nats
+      service-b:
+        condition: service_healthy
+      nats:
+        condition: service_started
     environment:
       - NATS_URL=nats://nats:4222
       - PYTHONPATH=/app
+    restart: on-failure

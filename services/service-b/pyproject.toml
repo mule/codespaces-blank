@@ -1,8 +1,22 @@
-[tool.hatch.metadata]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
 name = "service-b"
 version = "0.1.0"
+dependencies = [
+    "nats-py",
+    "flask"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/service_b"]
+
+
 
 [tool.hatch.envs.default]
 dependencies = [
-    "flask"
+    "flask",
+    "nats-py"
 ]

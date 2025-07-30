@@ -1,5 +1,4 @@
-[tool.hatch.build.targets.wheel]
-packages = ["service_c"]
+
 
 [build-system]
 requires = ["hatchling"]
@@ -15,9 +14,9 @@ dependencies = [
     "grpcio-tools"
 ]
 
-[tool.hatch.metadata]
-name = "service-c"
-version = "0.1.0"
+[tool.hatch.build.targets.wheel]
+packages = ["src/service_c"]
+
 
 [tool.hatch.envs.default]
 dependencies = [
